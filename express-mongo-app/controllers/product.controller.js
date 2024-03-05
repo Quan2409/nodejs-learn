@@ -2,20 +2,8 @@ const CategoryModel = require("../models/categoryModel");
 const ProductModel = require("../models/productModel");
 const productModel = require("../models/productModel");
 
-//build-controller
 const productController = {
-  // get all product
-  handleGetRequest: async (req, res) => {
-    var productList = await productModel.find({}).populate("category");
-    res.render("product/index", { productList });
-  },
-
-  handleDeleteRequest: async (req, res) => {
-    await productModel.findByIdAndDelete(req.params.id);
-    res.redirect("/product");
-  },
-
-  //show new product form
+  //create-product
   showAddForm: async (req, res) => {
     var categoryList = await CategoryModel.find({});
     res.render("product/add", { categoryList });
@@ -25,7 +13,14 @@ const productController = {
     res.redirect("/product");
   },
 
-  //edit product
+  //read-product
+  handleGetRequest: async (req, res) => {
+    var productList = await productModel.find({}).populate("category");
+    //apply new layout with syntax: {layout: new layout in views folder}
+    res.render("product/index", { productList });
+  },
+
+  //update-product
   showEditForm: async (req, res) => {
     var categoryList = await CategoryModel.find({});
     var oldProduct = await productModel.findById(req.params.id);
@@ -33,6 +28,12 @@ const productController = {
   },
   handleUpdateRequest: async (req, res) => {
     await ProductModel.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect("/product");
+  },
+
+  //delete-product
+  handleDeleteRequest: async (req, res) => {
+    await productModel.findByIdAndDelete(req.params.id);
     res.redirect("/product");
   },
 };

@@ -1,5 +1,6 @@
 <h1>Product List</h1>
-<table border="1">
+<a href="/product/add" class="btn orange">Add</a>
+<table class="responsive-table">
   <tr>
     <th>Product Name</th>
     <th>Product Price</th>
@@ -13,9 +14,10 @@
       <td>
         <img src="{{image}}" alt="image" width="100px" height="100px" /></td>
       <td>{{category.name}}</td>
-      <td><a href="/product/edit/{{_id}}">Edit</a></td>
+      <td><a href="/product/edit/{{_id}}" class="btn blue">Edit</a></td>
       <td><a
           href="/product/delete/{{_id}}"
+          class="btn red"
           onclick="return confirm('Do you want to delete ?')"
         >Delete</a></td>
     </tr>

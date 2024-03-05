@@ -1,21 +1,19 @@
 const express = require("express");
 const router = express.Router();
-
-//decalre controller
 const categoryController = require("../controllers/category.controller");
 
-// show all category
+//read-category
 router.get("/", categoryController.handleGetRequest);
 
-// add new category
+//create-category
 router.get("/add", categoryController.showAddForm);
 router.post("/add", categoryController.handlePostRequest);
 
-//edit category
+//update-category
 router.get("/edit/:id", categoryController.showEditForm);
 router.post("/edit/:id", categoryController.handleUpdateRequest);
 
-//delete a categoru
+//delete-category
 router.get("/delete/:id", categoryController.handleDeleteRequest);
 
 module.exports = router;
