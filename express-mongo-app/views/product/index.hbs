@@ -1,0 +1,21 @@
+<h1>Product List</h1>
+<table border="1">
+  <tr>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Product Image</th>
+    <th>Product Category</th>
+  </tr>
+  {{#each productList}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{price}}$</td>
+      <td>
+        <img src="{{image}}" alt="image" width="100px" height="100px" /></td>
+      <td>{{category.name}}</td>
+      <td><a href="Edit">Edit</a></td>
+      <td><a href="/product/delete/{{_id}}">Delete</a></td>
+    </tr>
+  {{/each}}
+
+</table>
