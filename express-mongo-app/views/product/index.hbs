@@ -13,9 +13,11 @@
       <td>
         <img src="{{image}}" alt="image" width="100px" height="100px" /></td>
       <td>{{category.name}}</td>
-      <td><a href="Edit">Edit</a></td>
-      <td><a href="/product/delete/{{_id}}">Delete</a></td>
+      <td><a href="/product/edit/{{_id}}">Edit</a></td>
+      <td><a
+          href="/product/delete/{{_id}}"
+          onclick="return confirm('Do you want to delete ?')"
+        >Delete</a></td>
     </tr>
   {{/each}}
-
 </table>
