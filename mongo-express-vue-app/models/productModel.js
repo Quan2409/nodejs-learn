@@ -7,7 +7,13 @@ var ProductSchema = mongoose.Schema({
     minLength: [3, "Product name can not be smaller than 3 characters"],
     maxLength: 30,
   },
-  price: Number,
+
+  price: {
+    type: Number,
+    //validation
+    min: [0, "Product Price not be a nagative number"],
+  },
+
   image: String,
   category: {
     //column of reference filed (Fk)

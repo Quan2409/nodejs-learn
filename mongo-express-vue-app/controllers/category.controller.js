@@ -1,4 +1,3 @@
-const CategoryModel = require("../models/categoryModel");
 const categoryModel = require("../models/categoryModel");
 
 const categoryController = {
@@ -29,7 +28,7 @@ const categoryController = {
     res.render("category/edit", { oldCategory });
   },
   handleUpdateRequest: async (req, res) => {
-    await CategoryModel.findByIdAndUpdate(req.params.id, req.body);
+    await categoryModel.findByIdAndUpdate(req.params.id, req.body);
     res.redirect("/category");
   },
 
