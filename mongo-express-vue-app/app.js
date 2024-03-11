@@ -10,6 +10,7 @@ var indexRouter = require("./routes/index");
 var categoryRouter = require("./routes/category");
 var productRouter = require("./routes/product");
 var authRouter = require("./routes/auth");
+var session = require("express-session");
 
 var app = express();
 
@@ -24,7 +25,25 @@ mongoose
     console.log(err);
   });
 
-// view engine setup
+//set session timeout
+const timeout = 1000 * 60 * 60 * 24;
+//config session middeware
+app.use(
+  session({
+    secret: "alien_is_existed_or_not_it_is_still_a_secret",
+    saveUninitialized: false,
+    cookie: { maxAge: timeout },
+    resave: false,
+  })
+);
+
+//make session value can be accessible in view (hbs)
+app.use((req, res, next) => {
+  res.locals.username = req.session.username;
+  next();
+});
+
+// view hbs
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
