@@ -1,0 +1,30 @@
+<h1>Product List</h1>
+<a href="/product/add" class="btn orange">Add</a>
+<form action="/product/search" method="post">
+  <input type="seach" name="keyword" id="" placeholder="Enter Keyword" />
+</form>
+<a class="btn yellow" href="/product/sort/asc">Sort by name ascending</a>
+<a class="btn brown" href="product/sort/desc">Sort by name descending</a>
+<table class="responsive-table">
+  <tr>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Product Image</th>
+    <th>Product Category</th>
+  </tr>
+  {{#each productList}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{price}}$</td>
+      <td>
+        <img src="{{image}}" alt="image" width="100px" height="100px" /></td>
+      <td>{{category.name}}</td>
+      <td><a href="/product/edit/{{_id}}" class="btn blue">Edit</a></td>
+      <td><a
+          href="/product/delete/{{_id}}"
+          class="btn red"
+          onclick="return confirm('Do you want to delete ?')"
+        >Delete</a></td>
+    </tr>
+  {{/each}}
+</table>
