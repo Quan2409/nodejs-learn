@@ -3,13 +3,14 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var session = require("express-session");
+var mongoose = require("mongoose");
 
 //decalre router (1 models => 1 routes)
-var indexRouter = require("./routes/index");
+const indexRouter = require("./routes/index");
 var categoryRouter = require("./routes/category");
 var productRouter = require("./routes/product");
 var authRouter = require("./routes/auth");
-var session = require("express-session");
 
 var app = express();
 
