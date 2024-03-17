@@ -6,8 +6,17 @@ const checkLoginSession = (req, res, next) => {
   }
 };
 
-//check signle role
-const checkSignleRole = (req, res, next) => {
+//check admin role
+const checkAdminRole = (req, res, next) => {
+  if (req.session.username && req.session.role == "admin") {
+    next();
+  } else {
+    res.redirect("auth/signin");
+  }
+};
+
+//check user role
+const checkUserRole = (req, res, next) => {
   if (req.session.username && req.session.role == "admin") {
     next();
   } else {
@@ -26,6 +35,7 @@ const checkMultipleRole = (allowedRoles) => (req, res, next) => {
 
 module.exports = {
   checkLoginSession,
-  checkSignleRole,
+  checkUserRole,
+  checkAdminRole,
   checkMultipleRole,
 };

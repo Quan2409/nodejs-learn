@@ -5,7 +5,7 @@ const salt = 8;
 const authController = {
   //sign-up
   showSignUpForm: (req, res) => {
-    res.render("auth/signup", { layout: "auth_layout" });
+    res.render("auth/signup", { layout: "/layouts/auth_layout" });
   },
   handleSignUp: async (req, res) => {
     const pass = req.body.password;
@@ -26,7 +26,7 @@ const authController = {
 
   // sign-in
   showSignInForm: (req, res) => {
-    res.render("auth/signin", { layout: "auth_layout" });
+    res.render("auth/signin", { layout: "/layouts/auth_layout" });
   },
   handleSignIn: async (req, res) => {
     try {
@@ -41,9 +41,10 @@ const authController = {
           req.session.username = user.username;
           req.session.role = user.role;
           if (user.role == "admin") {
-            res.redirect("/admin");
+            res.locals.hideItem = false;
+            res.redirect("/product");
           } else {
-            res.redirect("/user");
+            res.redirect("/product");
           }
         } else {
           res.redirect("/auth/signin");
@@ -52,6 +53,12 @@ const authController = {
     } catch (err) {
       res.send(err);
     }
+  },
+
+  //logout
+  handleLogOut: async (req, res) => {
+    req.session.destroy();
+    res.redirect("/auth/signin");
   },
 };
 

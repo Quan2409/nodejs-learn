@@ -1,19 +1,19 @@
-# NODEJS COURSE (MERN)
+# NODEJS COURSE (MEVN)
 
 Techniques Learn:
 
-- NodeJS: JavaScript runtime
-- ExpressJS: NodeJS framework
-- Materialize: CSS framework
 - MongoDB: NoSQL database
+- ExpressJS: NodeJS framework
 - VueJS: Frontend Framework
+- NodeJS: JavaScript runtime
 
 Software Setup:
 
 - VS Code: Code Editor
-- NodeJS: Backend
+- NodeJS: Enviroment Runtime
 - MongoDB Server: Database server
 - MongoDB Compass: Database management
+- Postman: Test API
 
 # Lesson 1: (3 slots)
 

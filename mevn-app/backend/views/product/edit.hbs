@@ -27,7 +27,7 @@
   <label for="">
     Image
     <input
-      type="url"
+      type="file"
       name="image"
       id=""
       placeholder="Choose Image"
@@ -35,7 +35,12 @@
       required
     />
     <br />
-    <img src="{{oldProduct.image}}" alt="image" width="100px" height="100px" />
+    <img
+      src="/images/product{{oldProduct.image}}"
+      alt="image"
+      width="100px"
+      height="100px"
+    />
   </label>
   <br />
   <select name="category" id="">

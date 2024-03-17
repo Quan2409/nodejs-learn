@@ -5,14 +5,19 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session");
 var mongoose = require("mongoose");
+var cors = require("cors");
 
 //decalre router (1 models => 1 routes)
 const indexRouter = require("./routes/index");
 var categoryRouter = require("./routes/category");
 var productRouter = require("./routes/product");
 var authRouter = require("./routes/auth");
+var apiRouter = require("./routes/api");
 
 var app = express();
+
+//config cors (for exchange API)
+app.use(cors());
 
 //connect to mongoDB
 const database = "mongodb://0.0.0.0:27017/data_test";
@@ -41,6 +46,13 @@ app.use(
 app.use((req, res, next) => {
   res.locals.username = req.session.username;
   res.locals.role = req.session.role;
+  res.locals.isLogin = true;
+
+  if (req.session.role == "admin") {
+    res.locals.hideItem = false;
+  } else {
+    res.locals.hideItem = true;
+  }
   next();
 });
 
@@ -52,13 +64,14 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 //declare URL of routes
 app.use("/", indexRouter);
 app.use("/category", categoryRouter);
 app.use("/product", productRouter);
 app.use("/auth", authRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

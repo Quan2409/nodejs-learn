@@ -1,21 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/product.controller");
-const {
-  checkSignleRole,
-  checkMultipleRole,
-} = require("../middlewares/auth.middleware");
-
-//create-product
-router.get(
-  "/add",
-  checkMultipleRole(["user", "admin"]),
-  productController.showAddForm
-);
-router.post("/add", productController.handlePostRequest);
+const { checkAdminRole } = require("../middlewares/auth.middleware");
+const { getUpload } = require("../middlewares/upload.middleware");
 
 //read-product
-router.get("/", checkSignleRole, productController.handleGetRequest);
+router.get("/", productController.handleGetRequest);
+
+//create-product
+router.get("/add", checkAdminRole, productController.showAddForm);
+router.post(
+  "/add",
+  getUpload("product", "image"),
+  productController.handlePostRequest
+);
 
 //upadate-product
 router.get("/edit/:id", productController.showEditForm);

@@ -23,14 +23,17 @@
   <br />
   <label for="">
     Image
-    <input type="file" name="image" id="" placeholder="Choose Image" required />
+    <input type="file" name="image" required />
   </label>
   <br />
-  <select name="category" id="">
-    {{#each categoryList}}
-      <option value="{{_id}}">{{name}}</option>
-    {{/each}}
-  </select>
+  <label for="">
+    Category:
+    <select name="category" id="" class="browser-default">
+      {{#each categoryList}}
+        <option value="{{_id}}">{{name}}</option>
+      {{/each}}
+    </select>
+  </label>
   <br />
   <input type="submit" value="Add" />
 </form>

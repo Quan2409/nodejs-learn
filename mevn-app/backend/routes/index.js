@@ -6,12 +6,4 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
-router.get("/admin", (req, res) => {
-  res.render("admin");
-});
-
-router.get("/user", (req, res) => {
-  res.render("index");
-});
-
 module.exports = router;

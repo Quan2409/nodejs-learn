@@ -11,10 +11,11 @@ var ProductSchema = mongoose.Schema({
   price: {
     type: Number,
     //validation
-    min: [0, "Product Price not be a nagative number"],
+    min: [0, "Product price not be a nagative number"],
   },
 
   image: String,
+
   category: {
     //column of reference filed (Fk)
     type: mongoose.SchemaTypes.ObjectId,
