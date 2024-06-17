@@ -4,8 +4,10 @@ const createError = require("http-errors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
-const mongodb = require("./src/config/database.config");
-const indexRouter = require("./src/routes/index.route");
+const mongodb = require("./src/config/database-config");
+const indexRouter = require("./src/routes/index-route");
+const categoryRouter = require("./src/routes/category-route");
+const productRouter = require("./src/routes/product-route");
 
 //app
 const app = express();
@@ -30,7 +32,9 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.static(path.join(__dirname, "src", "views")));
 
 // routes
-app.use(indexRouter);
+app.use("/", indexRouter);
+app.use("/category", categoryRouter);
+app.use("/product", productRouter);
 
 // handle 404
 app.use((req, res, next) => {
