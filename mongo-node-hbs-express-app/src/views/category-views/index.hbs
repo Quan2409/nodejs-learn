@@ -1,0 +1,23 @@
+<h1>Category List</h1>
+<a href="/category/add">Add</a>
+<table border="1">
+  <tr>
+    <th>Category Name</th>
+    <th>Descriptions</th>
+    <th></th>
+  </tr>
+
+  {{#each categories}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{description}}</td>
+      <td>
+        <a href="/category/edit/{{_id}}">Edit</a>
+        <a
+          href="/category/delete/{{_id}}"
+          onclick="return confirm('Are you sure want to delete ?')"
+        >Delete</a>
+      </td>
+    </tr>
+  {{/each}}
+</table>

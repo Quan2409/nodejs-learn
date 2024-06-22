@@ -1,16 +1,49 @@
 const categoryModel = require("../models/category-model");
 
 const categoryController = {
-  createCategory: async (req, res, next) => {
-    res.send("Test Add");
+  showFormCreate: (req, res) => {
+    res.render("category-views/add");
   },
 
-  readAllCategory: async (req, res, next) => {
+  createCategory: async (req, res) => {
+    var categoryValue = req.body;
+    await categoryModel.create(categoryValue);
+    res.redirect("/category");
+  },
+
+  readAllCategory: async (req, res) => {
     try {
       let categories = await categoryModel.find({});
       res.render("category-views/index", { categories });
     } catch (error) {
-      console.error("Something Wrong: " + error);
+      console.error("error: " + error);
+    }
+  },
+
+  showFormEdit: async (req, res) => {
+    let id = req.params.id;
+    let categoryValue = await categoryModel.findById(id);
+    res.render("category-views/edit", { categoryValue });
+  },
+
+  updateCategory: async (req, res) => {
+    try {
+      let id = req.params.id;
+      let newCategory = req.body;
+      await categoryModel.findByIdAndUpdate(id, newCategory);
+      res.redirect("/category");
+    } catch (error) {
+      console.error("error: " + error);
+    }
+  },
+
+  deleteSingleCategory: async (req, res) => {
+    try {
+      let id = req.params.id;
+      await categoryModel.findByIdAndDelete(id);
+      res.redirect("/category");
+    } catch (error) {
+      console.error("error: " + error);
     }
   },
 };

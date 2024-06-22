@@ -1,5 +1,15 @@
+<h1>Add New Product</h1>
 <form action="" method="post">
   <input type="text" name="name" placeholder="Product Name" required />
   <br />
-  <input type="text" name="name" placeholder="Product Description" required />
+  <input type="number" name="price" placeholder="Product Price" required />
+  <br />
+  <input type="url" name="image" placeholder="Product Image" required />
+  <br />
+  <select name="category" id="">
+    {{#each categoryList}}
+      <option value={{_id}}>{{name}}</option>
+    {{/each}}
+  </select>
+  <button>Add</button>
 </form>
