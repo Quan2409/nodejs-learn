@@ -22,7 +22,25 @@ const productController = {
     res.render("product-views/index", { products });
   },
 
-  deleteSingleProduct: async (req, res, next) => {
+  showFormEdit: async (req, res) => {
+    let id = req.params.id;
+    let categoryList = await categoryModel.find({});
+    let productValue = await productModel.findById(id);
+    res.render("product-views/edit", { productValue, categoryList });
+  },
+
+  updateProduct: async (req, res) => {
+    try {
+      let id = req.params.id;
+      let newProduct = req.body;
+      await productModel.findByIdAndUpdate(id, newProduct);
+      res.redirect("/product");
+    } catch (error) {
+      console.error("error: " + error);
+    }
+  },
+
+  deleteSingleProduct: async (req, res) => {
     try {
       let id = req.params.id;
       await productModel.findByIdAndDelete(id);

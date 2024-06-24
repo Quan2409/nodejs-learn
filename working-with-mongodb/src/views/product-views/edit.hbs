@@ -1,0 +1,34 @@
+<h1>Edit Product</h1>
+<form action="" method="post">
+  <input
+    type="text"
+    name="name"
+    placeholder="Product Name"
+    value={{productValue.name}}
+    required
+  />
+  <br />
+  <input
+    type="number"
+    name="price"
+    placeholder="Product Price"
+    value={{productValue.price}}
+    required
+  />
+  <br />
+  <input
+    type="url"
+    name="image"
+    placeholder="Product Image"
+    value={{productValue.image}}
+    required
+  />
+  <br />
+  <img src={{productValue.image}} alt="" width="100" height="100" />
+  <select name="category" id="">
+    {{#each categoryList}}
+      <option value={{_id}}>{{name}}</option>
+    {{/each}}
+  </select>
+  <button>Edit</button>
+</form>
