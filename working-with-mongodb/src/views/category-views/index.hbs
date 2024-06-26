@@ -1,6 +1,6 @@
 <h1>Category List</h1>
-<a href="/category/add">Add</a>
-<table border="1">
+<a class="btn green" href="/category/add">Add</a>
+<table class="responsive-table">
   <tr>
     <th>Category Name</th>
     <th>Descriptions</th>
@@ -12,8 +12,9 @@
       <td>{{name}}</td>
       <td>{{description}}</td>
       <td>
-        <a href="/category/edit/{{_id}}">Edit</a>
+        <a class="btn orange" href="/category/edit/{{_id}}">Edit</a>
         <a
+          class="btn red"
           href="/category/delete/{{_id}}"
           onclick="return confirm('Are you sure want to delete ?')"
         >Delete</a>

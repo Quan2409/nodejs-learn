@@ -7,6 +7,13 @@ const productController = {
     res.render("product-views/add", { categoryList });
   },
 
+  showFormEdit: async (req, res) => {
+    let id = req.params.id;
+    let categoryList = await categoryModel.find({});
+    let productValue = await productModel.findById(id);
+    res.render("product-views/edit", { productValue, categoryList });
+  },
+
   createProduct: async (req, res) => {
     try {
       let productValue = req.body;
@@ -20,13 +27,6 @@ const productController = {
   readAllProduct: async (req, res) => {
     let products = await productModel.find({}).populate("category");
     res.render("product-views/index", { products });
-  },
-
-  showFormEdit: async (req, res) => {
-    let id = req.params.id;
-    let categoryList = await categoryModel.find({});
-    let productValue = await productModel.findById(id);
-    res.render("product-views/edit", { productValue, categoryList });
   },
 
   updateProduct: async (req, res) => {

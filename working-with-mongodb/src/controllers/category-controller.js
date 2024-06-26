@@ -5,6 +5,12 @@ const categoryController = {
     res.render("category-views/add");
   },
 
+  showFormEdit: async (req, res) => {
+    let id = req.params.id;
+    let categoryValue = await categoryModel.findById(id);
+    res.render("category-views/edit", { categoryValue });
+  },
+
   createCategory: async (req, res) => {
     var categoryValue = req.body;
     await categoryModel.create(categoryValue);
@@ -18,12 +24,6 @@ const categoryController = {
     } catch (error) {
       console.error("error: " + error);
     }
-  },
-
-  showFormEdit: async (req, res) => {
-    let id = req.params.id;
-    let categoryValue = await categoryModel.findById(id);
-    res.render("category-views/edit", { categoryValue });
   },
 
   updateCategory: async (req, res) => {
