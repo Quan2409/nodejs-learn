@@ -1,34 +1,41 @@
 <h1>Product List</h1>
 <a class="btn yellow" href="/add">Add</a>
-<form method="post">
-  <input type="search" placeholder="Search.." />
-</form>
 
-<table border="1">
-  <tr>
-    <th>Product Name</th>
-    <th>Product Price</th>
-    <th>Product Image</th>
-    <th>Product Category</th>
-    <th></th>
-  </tr>
+<div class="col s12">
+  <form action="/search" method="post">
+    <input type="search" name="keyword" placeholder="Search.." />
+  </form>
+</div>
 
-  {{#each products}}
+{{#if message}}
+  <p>{{message}}</p>
+{{else}}
+  <table border="1">
     <tr>
-      <td>{{name}}</td>
-      <td>{{price}}</td>
-      <td>
-        <img src={{image}} alt="img" width="100" height="100" />
-      </td>
-      <td>{{category.name}}</td>
-      <td>
-        <a class="btn blue" href="/edit/{{_id}}">Edit</a>
-        <a
-          class="btn red"
-          href="/delete/{{_id}}"
-          onclick="return confirm('Are you sure want to delete ?')"
-        >Delete</a>
-      </td>
+      <th>Product Name</th>
+      <th>Product Price</th>
+      <th>Product Image</th>
+      <th>Product Category</th>
+      <th></th>
     </tr>
-  {{/each}}
-</table>
+
+    {{#each products}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{price}}</td>
+        <td>
+          <img src={{image}} alt="img" width="100" height="100" />
+        </td>
+        <td>{{category.name}}</td>
+        <td>
+          <a class="btn blue" href="/edit/{{_id}}">Edit</a>
+          <a
+            class="btn red"
+            href="/delete/{{_id}}"
+            onclick="return confirm('Are you sure want to delete ?')"
+          >Delete</a>
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+{{/if}}

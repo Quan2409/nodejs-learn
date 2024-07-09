@@ -8,5 +8,5 @@ router.post("/add", productController.createProduct);
 router.get("/edit/:id", productController.showFormEdit);
 router.post("/edit/:id", productController.updateProduct);
 router.get("/delete/:id", productController.deleteSingleProduct);
-
+router.post("/search", productController.searchProduct);
 module.exports = router;

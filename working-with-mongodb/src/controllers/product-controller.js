@@ -20,7 +20,7 @@ const productController = {
       await productModel.create(productValue);
       res.redirect("/product");
     } catch (error) {
-      console.error("error: " + error);
+      console.error(error);
     }
   },
 
@@ -36,7 +36,7 @@ const productController = {
       await productModel.findByIdAndUpdate(id, newProduct);
       res.redirect("/product");
     } catch (error) {
-      console.error("error: " + error);
+      console.error(error);
     }
   },
 
@@ -46,7 +46,27 @@ const productController = {
       await productModel.findByIdAndDelete(id);
       res.redirect("/product");
     } catch (error) {
-      console.error("error: " + error);
+      console.error(error);
+    }
+  },
+
+  searchProduct: async (req, res) => {
+    try {
+      let keyword = req.body.keyword;
+      let products = await productModel
+        .find({
+          name: new RegExp(keyword, "i"),
+        })
+        .populate("category");
+
+      if (products.length === 0) {
+        return res.render("product-views/index", {
+          message: "Product Not Found",
+        });
+      }
+      res.render("product-views/index", { products });
+    } catch (error) {
+      console.error(error);
     }
   },
 };
