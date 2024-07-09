@@ -2,5 +2,19 @@
 Instructor: Nguyen Tran Dinh Long
 
 Day 01: 
-- 
+- Setup Node and Express Development Environment
+- Connect MongoDB Server
+- Implement CRUD Features
+
+Day 02: 
+- Customize Web Layout With Materialize - CSS Framework
+- Validation Form Input
+- Setup Authentication using Express Session
+- Apply Hashing Technique For Password
+- Build Filter, Search, Sort Features
+
+
+Day 03: 
+- Build Authorization based on RBAC (Role Base Access Control)
+- Image File Upload with Multer
 

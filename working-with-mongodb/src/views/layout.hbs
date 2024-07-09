@@ -10,9 +10,20 @@
     />
   </head>
   <body>
-    <h1>Navbar</h1>
-    {{{body}}}
-    <h1>Footer</h1>
+    <div class="container">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="/" class="brand-logo">1682 Node.js</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/category">Category</a></li>
+            <li><a class="btn green" href="#">Sign Up</a></li>
+            <li><a class="btn green" href="#">Sign In</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      {{{body}}}
+    </div>
   </body>
 
   {{! script-materialize }}

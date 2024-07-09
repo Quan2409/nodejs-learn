@@ -1,5 +1,9 @@
 <h1>Product List</h1>
-<a href="/product/add">Add</a>
+<a class="btn yellow" href="/product/add">Add</a>
+<form action="" method="post">
+  <input type="search" placeholder="Search.." />
+</form>
+
 <table border="1">
   <tr>
     <th>Product Name</th>
@@ -18,8 +22,9 @@
       </td>
       <td>{{category.name}}</td>
       <td>
-        <a href="/product/edit/{{_id}}">Edit</a>
+        <a class="btn blue" href="/product/edit/{{_id}}">Edit</a>
         <a
+          class="btn red"
           href="/product/delete/{{_id}}"
           onclick="return confirm('Are you sure want to delete ?')"
         >Delete</a>
