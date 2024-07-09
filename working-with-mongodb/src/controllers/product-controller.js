@@ -69,6 +69,30 @@ const productController = {
       console.error(error);
     }
   },
+
+  sortAsc: async (req, res) => {
+    try {
+      let products = await productModel
+        .find()
+        .sort({ name: 1 })
+        .populate("category");
+      res.render("product-views/index", { products });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  sortDesc: async (req, res) => {
+    try {
+      let products = await productModel
+        .find()
+        .sort({ name: -1 })
+        .populate("category");
+      res.render("product-views/index", { products });
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
 
 module.exports = productController;
