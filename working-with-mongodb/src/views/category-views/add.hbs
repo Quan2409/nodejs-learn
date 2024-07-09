@@ -1,25 +1,22 @@
 <h1>Add New Category</h1>
-<form action="" method="post">
-  <div>
-    <label for="">
-      Name
-      <input type="text" name="name" placeholder="Category Name" required />
-    </label>
+<form action="" method="post" class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
+      <input type="text" class="validate" id="name" />
+      <label for="name">Name</label>
+    </div>
   </div>
 
-  <div>
-    <label for="">
-      Description
-      <input
-        type="text"
-        name="description"
-        placeholder="Category Description"
-        required
-      />
-    </label>
+  <div class="row">
+    <div class="input-field col s12">
+      <input type="text" class="validate" id="description" />
+      <label for="description">Description</label>
+    </div>
   </div>
 
-  <div>
-    <button>Add</button>
+  <div class="row">
+    <div class="input-field col s12">
+      <button class="btn green">Add</button>
+    </div>
   </div>
 </form>

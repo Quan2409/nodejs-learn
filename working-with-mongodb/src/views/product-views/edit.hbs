@@ -1,49 +1,46 @@
 <h1>Edit Product</h1>
-<form action="" method="post">
-  <div>
-    <label>
-      Name
+<form action="" method="post" class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
       <input
         type="text"
         name="name"
-        placeholder="Product Name"
-        value={{productValue.name}}
+        id="name"
+        value="{{productValue.name}}"
         required
       />
-    </label>
+      <label for="name">Name</label>
+    </div>
   </div>
 
-  <div>
-    <label>
-      Price
+  <div class="row">
+    <div class="input-field col s12">
       <input
         type="number"
         name="price"
-        placeholder="Product Price"
+        id="price"
         value={{productValue.price}}
         required
       />
-    </label>
+    </div>
+    <label for="price">Price</label>
   </div>
 
-  <div>
-    <label>
-      image
+  <div class="row">
+    <div class="input-field col s12">
+      <label for="image">Image</label>
       <input
         type="url"
         name="image"
-        placeholder="Product Image"
+        id="image"
         value={{productValue.image}}
         required
       />
-    </label>
+      <img src={{productValue.image}} alt="" width="100" height="100" />
+    </div>
   </div>
 
-  <div>
-    <img src={{productValue.image}} alt="" width="100" height="100" />
-  </div>
-
-  <div>
+  <div class="row">
     <select name="category" id="">
       {{#each categoryList}}
         <option value={{_id}}>{{name}}</option>
@@ -51,7 +48,9 @@
     </select>
   </div>
 
-  <div>
-    <button>Edit</button>
+  <div class="row">
+    <div class="input-field col s12">
+      <button class="btn green">Edit</button>
+    </div>
   </div>
 </form>

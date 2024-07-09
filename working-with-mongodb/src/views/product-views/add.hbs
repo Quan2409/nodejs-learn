@@ -1,27 +1,27 @@
 <h1>Add New Product</h1>
-<form action="" method="post">
-  <div>
-    <label for="">
-      Name
-      <input type="text" name="name" placeholder="Product Name" required />
-    </label>
+<form method="post" class="col s12">
+  <div class="row">
+    <div class="input-field col s12">
+      <input type="text" name="name" id="name" required />
+      <label for="name">Name</label>
+    </div>
   </div>
 
-  <div>
-    <label for="">
-      Price
-      <input type="number" name="price" placeholder="Product Price" required />
-    </label>
+  <div class="row">
+    <div class="input-field col s12">
+      <input type="number" name="price" id="price" required />
+      <label for="price">Price</label>
+    </div>
   </div>
 
-  <div>
-    <label for="">
-      Image
-      <input type="url" name="image" placeholder="Product Image" required />
-    </label>
+  <div class="row">
+    <div class="input-field col s12">
+      <input type="url" name="image" id="image" id="price" required />
+      <label for="image">Image</label>
+    </div>
   </div>
 
-  <div>
+  <div class="row">
     <select name="category" id="">
       {{#each categoryList}}
         <option value={{_id}}>{{name}}</option>
@@ -29,7 +29,9 @@
     </select>
   </div>
 
-  <div>
-    <button>Add</button>
+  <div class="row">
+    <div class="input-field col s12">
+      <button class="btn green">Add</button>
+    </div>
   </div>
 </form>

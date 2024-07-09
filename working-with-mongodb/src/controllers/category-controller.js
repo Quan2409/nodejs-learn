@@ -8,6 +8,7 @@ const categoryController = {
   showFormEdit: async (req, res) => {
     let id = req.params.id;
     let categoryValue = await categoryModel.findById(id);
+    console.log(categoryValue.description);
     res.render("category-views/edit", { categoryValue });
   },
 
