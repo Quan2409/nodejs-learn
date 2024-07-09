@@ -22,11 +22,14 @@
   </div>
 
   <div class="row">
-    <select name="category" id="">
-      {{#each categoryList}}
-        <option value={{_id}}>{{name}}</option>
-      {{/each}}
-    </select>
+    <div class="input-field col s">
+      <select class="dropdown-trigger btn" name="category">
+        <option value="">Choose Category</option>
+        {{#each categoryList}}
+          <option value={{_id}}>{{name}}</option>
+        {{/each}}
+      </select>
+    </div>
   </div>
 
   <div class="row">

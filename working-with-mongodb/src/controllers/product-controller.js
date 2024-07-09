@@ -11,14 +11,18 @@ const productController = {
     let id = req.params.id;
     let categoryList = await categoryModel.find({});
     let productValue = await productModel.findById(id);
-    res.render("product-views/edit", { productValue, categoryList });
+
+    res.render("product-views/edit", {
+      productValue,
+      categoryList,
+    });
   },
 
   createProduct: async (req, res) => {
     try {
       let productValue = req.body;
       await productModel.create(productValue);
-      res.redirect("/product");
+      res.redirect("/");
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +38,7 @@ const productController = {
       let id = req.params.id;
       let newProduct = req.body;
       await productModel.findByIdAndUpdate(id, newProduct);
-      res.redirect("/product");
+      res.redirect("/");
     } catch (error) {
       console.error(error);
     }

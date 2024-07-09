@@ -4,6 +4,7 @@ const createError = require("http-errors");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const hbs = require("hbs");
 const mongodb = require("./src/config/database-config");
 const indexRouter = require("./src/routes/index-route");
 
@@ -16,6 +17,11 @@ dotenv.config();
 
 // connect database
 mongodb();
+
+// register hbs helper
+hbs.registerHelper("eq", function (a, b) {
+  return a.toString() === b.toString();
+});
 
 // template engine setup
 app.set("views", path.join(__dirname, "src/views"));
