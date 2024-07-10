@@ -1,0 +1,32 @@
+<h1>User Registration</h1>
+<form method="post" onsubmit="return checkPassword();">
+  <div class="row">
+    <div class="input-field col s12">
+      <label for="name">Username</label>
+      <input type="text" name="name" id="name" required />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <label for="retype">Confirm Password</label>
+      <input type="password" name="retype" id="retype" required />
+      <p id="error"></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <button class="btn green">Register</button>
+    </div>
+  </div>
+
+  <a href="/auth/login">Already have account ? Sign In Here</a>
+</form>

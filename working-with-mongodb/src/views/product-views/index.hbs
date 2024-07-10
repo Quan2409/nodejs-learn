@@ -12,15 +12,14 @@
 {{#if message}}
   <p>{{message}}</p>
 {{else}}
-  <table border="1">
+  <table class="responsive">
     <tr>
       <th>Product Name</th>
       <th>Product Price</th>
       <th>Product Image</th>
       <th>Product Category</th>
-      <th></th>
+      <th>Actions</th>
     </tr>
-
     {{#each products}}
       <tr>
         <td>{{name}}</td>

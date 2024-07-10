@@ -11,7 +11,6 @@ const productController = {
     let id = req.params.id;
     let categoryList = await categoryModel.find({});
     let productValue = await productModel.findById(id);
-
     res.render("product-views/edit", {
       productValue,
       categoryList,
@@ -24,7 +23,13 @@ const productController = {
       await productModel.create(productValue);
       res.redirect("/");
     } catch (error) {
-      console.error(error);
+      if (error.name === "ValidationError") {
+        let inputError = {};
+        for (let field in error.errors) {
+          inputError[field] = error.errors[field].message;
+        }
+        res.render("product-views/add", { inputError });
+      }
     }
   },
 
@@ -48,7 +53,7 @@ const productController = {
     try {
       let id = req.params.id;
       await productModel.findByIdAndDelete(id);
-      res.redirect("/product");
+      res.redirect("/");
     } catch (error) {
       console.error(error);
     }
@@ -67,8 +72,9 @@ const productController = {
         return res.render("product-views/index", {
           message: "Product Not Found",
         });
+      } else {
+        res.render("product-views/index", { products });
       }
-      res.render("product-views/index", { products });
     } catch (error) {
       console.error(error);
     }
