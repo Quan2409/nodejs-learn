@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="initial-scale=1.0" />
     <title>Node App</title>
-    {{! css-materialize }}
+    {{! materialize-css }}
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
@@ -18,9 +18,15 @@
         <div class="nav-wrapper">
           <a href="/" class="brand-logo">1682 Node.js</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/category">Category</a></li>
-            <li><a class="btn green" href="/auth/register">Sign Up</a></li>
-            <li><a class="btn green" href="/auth/login">Sign In</a></li>
+
+            {{#if username}}
+              <li>Hello, {{username}}</li>
+              <li><a class="btn green" href="/auth/register">Sign Out</a></li>
+            {{else}}
+              <li><a href="/category">Category</a></li>
+              <li><a class="btn green" href="/auth/register">Sign Up</a></li>
+              <li><a class="btn green" href="/auth/login">Sign In</a></li>
+            {{/if}}
           </ul>
         </div>
       </nav>
@@ -29,7 +35,7 @@
     </div>
   </body>
 
-  {{! script-materialize }}
+  {{! materialize-script }}
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
   ></script>

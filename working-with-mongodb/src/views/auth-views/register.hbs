@@ -2,23 +2,39 @@
 <form action="/auth/register" method="post" onsubmit="return checkPassword();">
   <div class="row">
     <div class="input-field col s12">
-      <label for="name">Username</label>
-      <input type="text" name="name" id="name" required />
+      <label for="username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        value="{{user.username}}"
+      />
+      {{#if inputError.username}}
+        <p id="error">{{inputError.username}}</p>
+      {{/if}}
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12">
       <label for="password">Password</label>
-      <input type="password" name="password" id="password" required />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        value="{{user.password}}"
+      />
+      {{#if inputError.password}}
+        <p id="error">{{inputError.password}}</p>
+      {{/if}}
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12">
       <label for="retype">Confirm Password</label>
-      <input type="password" name="retype" id="retype" required />
-      <p id="error"></p>
+      <input type="password" name="retype" id="retype" />
+      <p id="retype-error"></p>
     </div>
   </div>
 

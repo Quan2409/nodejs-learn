@@ -1,5 +1,5 @@
 const userModel = require("../models/user-model");
-const hashString = require("../utils/hashString");
+const { hashString, compareString } = require("../utils/hashString");
 
 const authController = {
   showFormRegister: (req, res) => {
@@ -11,17 +11,57 @@ const authController = {
   },
 
   signUp: async (req, res) => {
-    let user = {
-      username: req.body.name,
-      password: hashString(req.body.password),
+    const { username, password } = req.body;
+    const user = new userModel({
+      username,
+      password,
       role: "admin",
-    };
-    await userModel.create(user);
-    res.redirect("/");
+    });
+
+    try {
+      await user.validate();
+      user.password = hashString(password);
+      await userModel.create(user);
+      res.redirect("/");
+    } catch (error) {
+      if (error.name === "ValidationError") {
+        let inputError = {};
+        for (let field in error.errors) {
+          inputError[field] = error.errors[field].message;
+        }
+        res.render("auth-views/register", {
+          inputError,
+          user,
+          layout: "auth-views/auth-layout",
+        });
+      }
+    }
   },
 
   signIn: async (req, res) => {
-    //
+    const { username, password } = req.body;
+    try {
+      const user = await userModel.findOne({ username: username });
+      if (user) {
+        let compareResult = compareString(password, user.password);
+        if (compareResult === true) {
+          req.session.username = user.username;
+          res.redirect("/");
+        }
+      }
+    } catch (error) {
+      if (error.name === "ValidationError") {
+        let inputError = {};
+        for (let field in error.errors) {
+          inputError[field] = error.errors[field].message;
+        }
+        res.render("auth-views/login", {
+          inputError,
+          user,
+          layout: "auth-views/auth-layout",
+        });
+      }
+    }
   },
 };
 

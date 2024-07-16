@@ -19,9 +19,16 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: timeout },
+    cookie: { maxAge: timeout, secure: false },
   })
 );
+
+// config session value in template
+app.use((req, res, next) => {
+  res.locals.username = req.session.username;
+  res.locals.role = req.session.role;
+  next();
+});
 
 // config database
 mongodb();

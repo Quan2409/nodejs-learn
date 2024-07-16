@@ -5,4 +5,8 @@ const hashString = (string) => {
   return bcrypt.hashSync(string, salt);
 };
 
-module.exports = hashString;
+const compareString = (input, data) => {
+  return bcrypt.compareSync(input, data);
+};
+
+module.exports = { hashString, compareString };
