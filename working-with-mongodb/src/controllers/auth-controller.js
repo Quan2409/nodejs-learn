@@ -3,11 +3,11 @@ const { hashString, compareString } = require("../utils/hashString");
 
 const authController = {
   showFormRegister: (req, res) => {
-    res.render("auth-views/register", { layout: "auth-views/auth-layout" });
+    res.render("auth-views/register", { layout: "auth-views/layout" });
   },
 
   showFormLogin: (req, res) => {
-    res.render("auth-views/login", { layout: "auth-views/auth-layout" });
+    res.render("auth-views/login", { layout: "auth-views/layout" });
   },
 
   signUp: async (req, res) => {
@@ -32,7 +32,7 @@ const authController = {
         res.render("auth-views/register", {
           inputError,
           user,
-          layout: "auth-views/auth-layout",
+          layout: "auth-views/layout",
         });
       }
     }
@@ -58,7 +58,7 @@ const authController = {
         res.render("auth-views/login", {
           inputError,
           user,
-          layout: "auth-views/auth-layout",
+          layout: "auth-views/layout",
         });
       }
     }

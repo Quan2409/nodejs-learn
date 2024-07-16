@@ -5,7 +5,11 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const hbs = require("hbs");
 const mongodb = require("./src/config/database-config");
-const indexRouter = require("./src/routes/index-route");
+const indexRoutes = require("./src/routes/index-route");
+const productRoutes = require("./src/routes/product-route");
+const categoryRoutes = require("./src/routes/category-route");
+const authRoutes = require("./src/routes/auth-route");
+const authMiddleware = require("./src/middlewares/auth-middleware");
 
 // config express.js
 const app = express();
@@ -50,7 +54,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // config routes
-app.use(indexRouter);
+app.use("/", indexRoutes);
+app.use("/auth", authRoutes);
+app.use("/product", authMiddleware, productRoutes);
+app.use("/category", authMiddleware, categoryRoutes);
 
 // error-handling
 app.use((err, req, res, next) => {
