@@ -3,16 +3,18 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    minLength: [3, "Username must be at least 3 characters "],
-    maxLength: [30, "Username must not more than 30 characters"],
+    unique: true,
+    required: true,
   },
 
   password: {
     type: String,
+    required: true,
   },
 
   role: {
     type: String,
+    required: true,
   },
 });
 

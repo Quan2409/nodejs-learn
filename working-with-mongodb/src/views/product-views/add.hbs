@@ -1,20 +1,31 @@
 <h1>Add New Product</h1>
-<form method="post" class="col s12">
+<form action="/add" method="post" class="col s12">
   <div class="row">
     <div class="input-field col s12">
       <label for="name">Name</label>
-      <input type="text" name="name" id="name" required />
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="{{productValue.name}}"
+        required
+      />
       {{#if inputError.name}}
         <p id="error">{{inputError.name}}</p>
       {{/if}}
-
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12">
       <label for="price">Price</label>
-      <input type="number" name="price" id="price" required />
+      <input
+        type="number"
+        name="price"
+        id="price"
+        value="{{productValue.price}}"
+        required
+      />
       {{#if inputError.price}}
         <p id="error">{{inputError.price}}</p>
       {{/if}}

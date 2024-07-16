@@ -1,6 +1,6 @@
 const checkPassword = () => {
-  const password = document.getElementById("password");
-  const retype = document.getElementById("retype");
+  const password = document.getElementById("password").value;
+  const retype = document.getElementById("retype").value;
   const error = document.getElementById("error");
 
   if (retype != password) {

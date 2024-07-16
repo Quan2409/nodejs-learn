@@ -1,21 +1,29 @@
 const express = require("express");
 const path = require("path");
-const createError = require("http-errors");
 const morgan = require("morgan");
-const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const hbs = require("hbs");
 const mongodb = require("./src/config/database-config");
 const indexRouter = require("./src/routes/index-route");
 
-//app
+// config express.js
 const app = express();
-const port = 3005;
+app.use(express.json({ limit: "10mb" }));
+app.use(express.static(path.join(__dirname, "public")));
 
-// config dotenv
-dotenv.config();
+// config session timeout
+const timeout = 1000 * 60 * 60 * 24;
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: timeout },
+  })
+);
 
-// connect database
+// config database
 mongodb();
 
 // register hbs helper
@@ -23,27 +31,21 @@ hbs.registerHelper("eq", function (a, b) {
   return a.toString() === b.toString();
 });
 
-// template engine setup
+// config template engine
 app.set("views", path.join(__dirname, "src/views"));
 app.set("view engine", "hbs");
 
-//app.use()
+//config morgan
 app.use(morgan("dev"));
-app.use(express.json());
+
+// config body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json({ limit: "10mb" }));
-app.use(express.static(path.join(__dirname, "public")));
 
-// routes
+// config routes
 app.use(indexRouter);
 
-// handle 404
-app.use((req, res, next) => {
-  next(createError(404));
-});
-
-// error handler
+// error-handling
 app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -51,6 +53,8 @@ app.use((err, req, res, next) => {
   res.render("error");
 });
 
+// config server
+let port = 3005;
 app.listen(port, () => {
   console.log(`server is running on: http://localhost:${port}/`);
 });

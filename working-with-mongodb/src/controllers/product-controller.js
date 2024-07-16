@@ -18,8 +18,8 @@ const productController = {
   },
 
   createProduct: async (req, res) => {
+    let productValue = req.body;
     try {
-      let productValue = req.body;
       await productModel.create(productValue);
       res.redirect("/");
     } catch (error) {
@@ -28,7 +28,10 @@ const productController = {
         for (let field in error.errors) {
           inputError[field] = error.errors[field].message;
         }
-        res.render("product-views/add", { inputError });
+        res.render("product-views/add", {
+          inputError,
+          productValue,
+        });
       }
     }
   },
