@@ -63,6 +63,11 @@ const authController = {
       }
     }
   },
+
+  signOut: (req, res) => {
+    req.session.destroy();
+    res.redirect("/auth/login");
+  },
 };
 
 module.exports = authController;
