@@ -1,14 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/product-controller");
-const authMiddleware = require("../middlewares/auth-middleware");
+const { checkAdminRole } = require("../middlewares/auth-middleware");
 
-router.get("/add", authMiddleware, productController.showFormCreate);
+router.get("/add", checkAdminRole, productController.showFormCreate);
 router.post("/add", productController.createProduct);
-router.get("/edit/:id", productController.showFormEdit);
+router.get("/edit/:id", checkAdminRole, productController.showFormEdit);
 router.post("/edit/:id", productController.updateProduct);
-router.get("/delete/:id", productController.deleteSingleProduct);
+router.get(
+  "/delete/:id",
+  checkAdminRole,
+  productController.deleteSingleProduct
+);
 router.post("/search", productController.searchProduct);
-router.get("/sort/asc", productController.sortAsc);
-router.get("/sort/desc", productController.sortDesc);
+router.get("/sort/asc", checkAdminRole, productController.sortAsc);
+router.get("/sort/desc", checkAdminRole, productController.sortDesc);
+
 module.exports = router;

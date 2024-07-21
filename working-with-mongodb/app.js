@@ -9,7 +9,7 @@ const indexRoutes = require("./src/routes/index-route");
 const productRoutes = require("./src/routes/product-route");
 const categoryRoutes = require("./src/routes/category-route");
 const authRoutes = require("./src/routes/auth-route");
-const authMiddleware = require("./src/middlewares/auth-middleware");
+const { checkLogin } = require("./src/middlewares/auth-middleware");
 
 // config express.js
 const app = express();
@@ -39,7 +39,7 @@ mongodb();
 
 // register hbs helper
 hbs.registerHelper("eq", function (a, b) {
-  return a.toString() === b.toString();
+  return a === b;
 });
 
 // config template engine
@@ -56,8 +56,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // config routes
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
-app.use("/product", authMiddleware, productRoutes);
-app.use("/category", authMiddleware, categoryRoutes);
+app.use("/product", checkLogin, productRoutes);
+app.use("/category", checkLogin, categoryRoutes);
 
 // error-handling
 app.use((err, req, res, next) => {

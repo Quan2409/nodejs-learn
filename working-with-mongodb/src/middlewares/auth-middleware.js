@@ -6,4 +6,12 @@ const checkLogin = (req, res, next) => {
   }
 };
 
-module.exports = checkLogin;
+const checkAdminRole = (req, res, next) => {
+  if (req.session.username && req.session.role == "admin") {
+    next();
+  } else {
+    res.redirect("/auth/login");
+  }
+};
+
+module.exports = { checkLogin, checkAdminRole };

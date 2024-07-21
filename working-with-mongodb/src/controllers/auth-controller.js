@@ -11,11 +11,11 @@ const authController = {
   },
 
   signUp: async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role } = req.body;
     const user = new userModel({
       username,
       password,
-      role: "admin",
+      role,
     });
 
     try {
@@ -46,6 +46,7 @@ const authController = {
         let compareResult = compareString(password, user.password);
         if (compareResult === true) {
           req.session.username = user.username;
+          req.session.role = user.role;
           res.redirect("/");
         }
       }

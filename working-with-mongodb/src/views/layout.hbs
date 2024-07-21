@@ -18,13 +18,11 @@
         <div class="nav-wrapper">
           <a href="/" class="brand-logo">1682 Node.js</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-
             {{#if username}}
               <li><a href="/category">Category</a></li>
               <li>Hello, {{username}}</li>
               <li><a class="btn green" href="/auth/logout">Sign Out</a></li>
             {{else}}
-
               <li><a class="btn green" href="/auth/register">Sign Up</a></li>
               <li><a class="btn green" href="/auth/login">Sign In</a></li>
             {{/if}}
