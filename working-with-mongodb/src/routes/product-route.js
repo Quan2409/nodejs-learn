@@ -13,7 +13,7 @@ router.get(
   productController.deleteSingleProduct
 );
 router.post("/search", productController.searchProduct);
-router.get("/sort/asc", checkAdminRole, productController.sortAsc);
-router.get("/sort/desc", checkAdminRole, productController.sortDesc);
+router.get("/sort/asc", productController.sortAsc);
+router.get("/sort/desc", productController.sortDesc);
 
 module.exports = router;
