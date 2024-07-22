@@ -13,9 +13,17 @@ const categoryController = {
   },
 
   createCategory: async (req, res) => {
-    var categoryValue = req.body;
-    await categoryModel.create(categoryValue);
-    res.redirect("/category");
+    const { name, description } = req.body;
+    const category = new categoryModel({
+      name,
+      description,
+    });
+    try {
+      await categoryModel.create(category);
+      res.redirect("/category");
+    } catch (error) {
+      console.error(error);
+    }
   },
 
   readAllCategory: async (req, res) => {
@@ -28,9 +36,13 @@ const categoryController = {
   },
 
   updateCategory: async (req, res) => {
+    const id = req.params.id;
+    const { name, description } = req.body;
+    const newCategory = new categoryModel({
+      name,
+      description,
+    });
     try {
-      let id = req.params.id;
-      let newCategory = req.body;
       await categoryModel.findByIdAndUpdate(id, newCategory);
       res.redirect("/category");
     } catch (error) {
@@ -39,8 +51,8 @@ const categoryController = {
   },
 
   deleteSingleCategory: async (req, res) => {
+    const id = req.params.id;
     try {
-      let id = req.params.id;
       await categoryModel.findByIdAndDelete(id);
       res.redirect("/category");
     } catch (error) {

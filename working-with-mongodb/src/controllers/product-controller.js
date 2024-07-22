@@ -18,9 +18,16 @@ const productController = {
   },
 
   createProduct: async (req, res) => {
-    let productValue = req.body;
+    const { name, price, image, category } = req.body;
+    const product = new productModel({
+      name,
+      price,
+      image,
+      category,
+    });
+
     try {
-      await productModel.create(productValue);
+      await productModel.create(product);
       res.redirect("/");
     } catch (error) {
       if (error.name === "ValidationError") {
@@ -30,7 +37,7 @@ const productController = {
         }
         res.render("product-views/add", {
           inputError,
-          productValue,
+          product,
         });
       }
     }
@@ -42,9 +49,15 @@ const productController = {
   },
 
   updateProduct: async (req, res) => {
+    let id = req.params.id;
+    const { name, price, image, category } = req.body;
+    const newProduct = new productModel({
+      name,
+      price,
+      image,
+      category,
+    });
     try {
-      let id = req.params.id;
-      let newProduct = req.body;
       await productModel.findByIdAndUpdate(id, newProduct);
       res.redirect("/");
     } catch (error) {
@@ -53,8 +66,8 @@ const productController = {
   },
 
   deleteSingleProduct: async (req, res) => {
+    const id = req.params.id;
     try {
-      let id = req.params.id;
       await productModel.findByIdAndDelete(id);
       res.redirect("/");
     } catch (error) {
@@ -63,8 +76,8 @@ const productController = {
   },
 
   searchProduct: async (req, res) => {
+    let keyword = req.body.keyword;
     try {
-      let keyword = req.body.keyword;
       let products = await productModel
         .find({
           name: new RegExp(keyword, "i"),
