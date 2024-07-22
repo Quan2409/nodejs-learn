@@ -25,6 +25,8 @@ const productController = {
       image,
       category,
     });
+    let prefix = req.dateValue;
+    product.image = prefix + "_" + req.file.originalname;
 
     try {
       await productModel.create(product);

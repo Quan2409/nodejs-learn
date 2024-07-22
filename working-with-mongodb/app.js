@@ -9,7 +9,10 @@ const indexRoutes = require("./src/routes/index-route");
 const productRoutes = require("./src/routes/product-route");
 const categoryRoutes = require("./src/routes/category-route");
 const authRoutes = require("./src/routes/auth-route");
-const { checkLogin } = require("./src/middlewares/auth-middleware");
+const {
+  checkLogin,
+  checkAdminRole,
+} = require("./src/middlewares/auth-middleware");
 
 // config express.js
 const app = express();
@@ -56,6 +59,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // config routes
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
+app.use("/product", checkAdminRole);
+app.use("/category", checkAdminRole);
 app.use("/product", checkLogin, productRoutes);
 app.use("/category", checkLogin, categoryRoutes);
 
