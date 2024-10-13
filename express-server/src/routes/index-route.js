@@ -1,12 +1,12 @@
 const express = require("express");
+const userRouter = require("./user-route");
+const authRouter = require("./auth-route");
+const homeController = require("../controllers/home-controller");
+const authMiddleware = require("../middlewares/auth-middleware");
+
 const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.send("Hello Express");
-});
-
-router.get("/second-page", (req, res) => {
-  res.send("This is second page");
-});
+router.get("/", homeController.viewHomepage);
+router.use("/auth", authRouter);
+router.use("/user", userRouter);
 
 module.exports = router;
