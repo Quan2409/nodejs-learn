@@ -1,14 +1,10 @@
-# MONGODB INITERGRATION WITH ODM
-
 Technologies:
+- Front-End: View Engine (Handlebars)
+- Back-End: Node.js (Express.js Framwork)
+- Database: MongoDB
+- ODM: Mongoose
 
-- **Front-End**: View Engine (Handlebars)
-- **Back-End**: Node.js (Express.js Framwork)
-- **Database**: MongoDB
-- **ODM**: Mongoose
-
-All Operations: 
-
+All Operations:
 - Implement CRUD Features
 - Customize Web Layout With Materialize - CSS Framework
 - Validation Form Input
